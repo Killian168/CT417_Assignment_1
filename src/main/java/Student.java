@@ -1,4 +1,5 @@
 import org.joda.time.DateTime;
+
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
@@ -13,64 +14,120 @@ public class Student {
     private ArrayList<Module> modules = null;
     private boolean registered = false;
 
-    public Student(String name, int age, DateTime dob, double id, Course course, ArrayList<Module> modules, boolean registered) {
+    ////////////// Constructors //////////////
+
+    public Student(String name, DateTime dob, double id, Course course, ArrayList<Module> modules,
+                   boolean registered) {
         this.setName(name);
-        this.setAge(age);
         this.setDob(dob);
         this.setId(id);
-        this.setCourses(course);
+        this.setCourse(course);
         this.setModules(modules);
         this.setRegistered(registered);
         this.username = this.getUsername();
     }
 
-    private String getUsername() throws InvalidParameterException {
+    ////////////// Setters //////////////
+
+    public void setName(String name) {
+        if (name == null || name.isBlank() || name.isEmpty()) {
+            throw new InvalidParameterException("Student name cannot be empty or null");
+        }
+        this.name = name;
+    }
+
+    public void setAge() {
+        this.age = this.calculateAge(this.dob, DateTime.now());
+    }
+
+    public void setDob(DateTime dob) {
+        if (dob == null) {
+            throw new InvalidParameterException("Student Date of Birth cannot be set to null");
+        }
+        this.dob = dob;
+        this.setAge();
+    }
+
+    public void setId(double id) {
+        if (id < 1) {
+            throw new InvalidParameterException("Student id cannot be less than 1");
+        }
+        this.id = id;
+    }
+
+    public void setCourse(Course course) {
+        if (course == null) {
+            throw new InvalidParameterException("Student course cannot be set to null");
+        }
+        this.course = course;
+    }
+
+    public void setModules(ArrayList<Module> modules) {
+        if (modules == null) {
+            throw new InvalidParameterException("Student modules cannot be set to null");
+        }
+        if (modules.isEmpty()) {
+            throw new InvalidParameterException("Student modules cannot be set to empty");
+        }
+        this.modules = modules;
+    }
+
+    public void setRegistered(boolean registered) {
+        this.registered = registered;
+    }
+
+
+    ////////////// Getters //////////////
+
+    public String getUsername() throws InvalidParameterException {
         if (this.username == null) {
-            if (this.name == null || this.age == -1) {
-                throw new InvalidParameterException("Name or Age can not be null");
+            if (this.name == null) {
+                throw new InvalidParameterException("Name must not be null to set Username");
+            }
+            if (this.age < 1) {
+                throw new InvalidParameterException("Age must not be less than 1 to set Username");
             }
             this.username = this.name + this.age;
         }
         return this.username;
     }
 
-    private void setName(String name) {
-        if (name == null) {
-            throw new InvalidParameterException("Name can not be null");
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public DateTime getDob() {
+        return dob;
+    }
+
+    public double getId() {
+        return id;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public ArrayList<Module> getModules() {
+        return modules;
+    }
+
+    public boolean isRegistered() {
+        return registered;
+    }
+
+    ////////////// Public methods //////////////
+
+    ////////////// Private methods //////////////
+
+    private int calculateAge(DateTime birthDate, DateTime currentDate) {
+        if (birthDate.isAfter(currentDate)) {
+            throw new InvalidParameterException("BirthDate cannot be after currentDate");
         }
-        this.name = name;
-    }
-
-    private void setAge(int age) {
-        this.age = age;
-    }
-
-    private void setDob(DateTime dob) {
-        if (dob == null) {
-            throw new InvalidParameterException("Date Of Birth can not be null");
-        }
-        this.dob = dob;
-    }
-
-    private void setId(double id) {
-        this.id = id;
-    }
-
-    private void setCourses(Course course) {
-        if (course == null) {
-            throw new InvalidParameterException("Course can not be null");
-        }
-        this.course = course;
-    }
-
-    private void setModules(ArrayList<Module> modules) {
-        if (modules == null) {
-            throw new InvalidParameterException("Modules can not be null");
-        }
-        this.modules = modules;
-    }
-
-    private void setRegistered(boolean registered) {
-        this.registered = registered;
+        return currentDate.getYear() - birthDate.getYear();
     }
 }
