@@ -6,7 +6,7 @@
 
     <groupId>com.killian.college</groupId>
     <artifactId>ct417-assignment-1</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
