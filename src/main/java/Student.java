@@ -122,6 +122,22 @@ public class Student {
 
     ////////////// Public methods //////////////
 
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Student{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", age=").append(age);
+        sb.append(", dob=").append(dob);
+        sb.append(", id=").append(id);
+        sb.append(", username='").append(username).append('\'');
+        sb.append(", course=").append(course);
+        sb.append(", modules=").append(modules);
+        sb.append(", registered=").append(registered);
+        sb.append('}');
+        return sb.toString();
+    }
+
+
     ////////////// Private methods //////////////
 
     private int calculateAge(DateTime birthDate, DateTime currentDate) {

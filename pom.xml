@@ -14,7 +14,6 @@
     </properties>
 
     <dependencies>
-
         <!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
         <dependency>
             <groupId>joda-time</groupId>
@@ -40,8 +39,6 @@
             <version>1.10.19</version>
             <scope>test</scope>
         </dependency>
-
-
     </dependencies>
 
     <build>

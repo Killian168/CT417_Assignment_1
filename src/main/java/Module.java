@@ -102,6 +102,20 @@ public class Module {
 
     ////////////// Public methods //////////////
 
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Module{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", id='").append(id).append('\'');
+        sb.append(", start_date=").append(start_date);
+        sb.append(", end_date=").append(end_date);
+        sb.append(", students=").append(students);
+        sb.append(", courses=").append(courses);
+        sb.append('}');
+        return sb.toString();
+    }
+
+
     ////////////// Private methods //////////////
 
 }
