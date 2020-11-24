@@ -48,6 +48,12 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.5.201505241946</version>
                 <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
                     <!-- The Executions required by unit tests are omitted. -->
                     <!--
                         Prepares the property pointing to the JaCoCo runtime agent which
