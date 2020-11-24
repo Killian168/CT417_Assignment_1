@@ -6,3 +6,4 @@ jdk:
 build:
   ci:
     - mvn clean install
+    - mvn clean test
