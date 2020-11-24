@@ -7,3 +7,4 @@ build:
   ci:
     - mvn clean install
     - mvn clean test
+    - cp target/site/jacoco/jacoco.xml shippable/codecoverage
